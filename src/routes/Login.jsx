@@ -25,5 +25,8 @@ const Login = () => {
 
     Lo importanta aquí es crear el archivo nombrandolo con mayusculas, así no se confunde
     con ninguna etiqueta. 
+
+    Usercontext lleva consigo la siguiente información de usuario 
+    <UserContext.Provider value={{user, setUser, registerUser}}>
     
 */ }

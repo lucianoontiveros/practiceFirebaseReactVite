@@ -17,5 +17,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 {/* 
   Quiero revisar si el StrictMode genera algún problema de comunicación con las 
   rutas predeterminadas. 
+
+  El UserProvider es una forma de habilitarle rutas al ususario si este esta 
+  identificado por ello lo envolmes en nuestra aplicación  <App />. También esto 
+  mismo lo podríamos haber hecho en el App.jsx poniendo las etiquetas entre 
+  un ruta especifica. 
   
 */}
