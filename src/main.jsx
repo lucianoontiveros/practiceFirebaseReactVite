@@ -13,3 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </UserProvider>
   </React.StrictMode>,
 )
+
+{/* 
+  Quiero revisar si el StrictMode genera algún problema de comunicación con las 
+  rutas predeterminadas. 
+  
+*/}

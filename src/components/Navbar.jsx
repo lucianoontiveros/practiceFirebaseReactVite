@@ -2,25 +2,22 @@ import { NavLink } from "react-router-dom"
 import { useContext } from "react"
 import { UserContext } from "../context/UserProvider"
 const Navbar = () => {
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
     return(
         <>
             
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
-                    {
-                        user ?
-                        <NavLink className="nav-link" to="/Login">Login</NavLink> :
-                        <NavLink className="navbar-brand" to="/">Navbar</NavLink>
-
-                    }
+                    <NavLink className="navbar-brand" to="/">Navbar</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <NavLink className="nav-link" aria-current="page" to="/">Home</NavLink>
-                            <NavLink className="nav-link" to="/features">Features</NavLink>
+                            {
+                            user ? (<><button onClick={() => setUser(false)}>salir</button><NavLink className="nav-link" to="/">Home</NavLink></>) : (<><NavLink className="nav-link" to="/Login">Login</NavLink><button onClick={() => setUser(true)}>Acceder</button></>)
+    
+                            }
                         </div>
                     </div>
                 </div>
