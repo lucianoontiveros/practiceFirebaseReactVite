@@ -18,3 +18,12 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export { auth }
+
+{ /* 
+  FirebaseConfig no tiene que estar ocultad. Que este a la vista no es un problema.
+  En proyect setting por si perdemos esta configuración inicial, salen todos 
+  los datos. 
+
+  El auth tiene toda la configuración de nuestro firebase, y tierne unos metodos interesantes
+  a utilizar. 
+*/ }
