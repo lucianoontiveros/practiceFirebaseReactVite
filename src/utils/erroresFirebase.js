@@ -1,13 +1,28 @@
-export const erroresFirebase = (code) => {
-    switch (code) {
+export const erroresFirebase = (error) => {
+    switch (error.code) {
         case "auth/email-already-in-use":
-            return "Usuario ya registrado";
+            return { code: "email", message: "Usuario ya registrado" };
 
         case "auth/invalid-email":
-            return "Formato de email no valido";
+            return { code: "email", message: "Formato email no válido" };
 
-        default: 
-            return "Ocurrio un error en el servidor";
+        case "auth/invalid-email-verified":
+            return { code: "email", message: "El email no está verificado" };
+
+        case "auth/invalid-password":
+            return {
+                code: "password",
+                message: "Contraseña mínimo 6 carácteres",
+            };
+
+        case "auth/user-not-found":
+            return { code: "email", message: "Usuario no registrado" };
+
+        case "auth/wrong-password":
+            return { code: "password", message: "Correo y/o contraseña incorrecta" };
+
+        default:
+            return { code: "email", message: "Error, intentelo más tarde" };
     }
 }
 

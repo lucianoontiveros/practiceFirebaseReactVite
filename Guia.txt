@@ -1,0 +1,68 @@
+Guia primera parte 1 
+-comenzamos con una aplicación tipica de react trabajando desde el main.jsx
+- Trabajamos primero con archivo de Firebase donde dejamos asentada la configuración
+- Por el momento solo ocupamos la funcionalidad de la autentificación. 
+- Creamos una carpeta llamada Context creando un UserProvider.jsx que nos permite
+configurar las sesiones de usuario y saber si esta logueado o no. 
+- Dentro del UserProvider.jsx usamos un metodo llamado OnAuthStateChanged
+que viene de firebase.  Que verifica si tiene abierta una sesión. 
+- Luego creamos unas acciones en este archivo para conectar y desconectar.
+Todas estas funcionalidades viene de firebase sección autentificación.
+- Todo lo envolvemos en un userContext y lo embolvemos en el archivo main.js
+para que el usuario al usar la app tenga acceso o no a ciertas funcionalidades
+MAIN.JSX
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+import UserProvider from './context/UserProvider'
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <UserProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserProvider>
+  </React.StrictMode>,
+)
+
+
+APP.js 
+- Allí comenzamos a usar React Touter que es quien nos permite crear los link y nav
+configurando nuestras rutas. 
+
+import { Routes, Route } from 'react-router-dom'
+import Login from './routes/Login'
+import Home from './routes/Home'
+import Navbar from './components/Navbar'
+import RequiereAuth from './components/RequiereAuth'
+import Register from './routes/Register'
+import { UserContext } from './context/UserProvider'
+import { useContext } from 'react'
+const App = () => {
+
+  const {user}= useContext(UserContext)
+
+  if( user === false) {
+    return <p> loading </p>
+  }
+
+  return (
+    <>
+      <Navbar/>
+      <h1>APP</h1>
+      <Routes>
+        <Route path='/' element={ <RequiereAuth> <Home/> </RequiereAuth> }> </Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+      </Routes>
+    </>
+  )
+}
+
+-RequiereAuth hace consulta si existe el usaurio, si el usuario esta registrado
+de lo contrario te lleva al apartado inicial de Login. Requiere Auth lo pusimos
+como un componente.
+- 
+
